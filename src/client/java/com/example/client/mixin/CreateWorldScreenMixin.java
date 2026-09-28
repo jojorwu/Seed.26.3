@@ -34,13 +34,8 @@ public abstract class CreateWorldScreenMixin extends Screen {
             if (this.minecraft != null) {
                 CreateWorldScreen currentScreen = (CreateWorldScreen) (Object) this;
                 WorldCreationUiState uiState = this.getUiState();
-                String initialSeed = uiState != null ? uiState.getSeed() : "";
 
-                this.minecraft.setScreen(new WorldPreviewScreen(currentScreen, initialSeed, newSeed -> {
-                    if (uiState != null) {
-                        uiState.setSeed(newSeed);
-                    }
-                }));
+                this.minecraft.setScreen(new WorldPreviewScreen(currentScreen, uiState));
             }
         }).bounds(x, y, buttonWidth, buttonHeight).build());
     }
